@@ -1,6 +1,6 @@
 #set page(
 	paper: "a4",
-	margin: 0.5cm,
+	margin: (x: 0.5cm, y: 1cm),
 	flipped: true, // landscape mode
 	columns: 2,
 )
@@ -29,11 +29,26 @@
 	}
 )
 
+
+#place(
+	top + center,
+	scope: "parent",
+	float: true,
+	text(
+		font: "HK Grotesk",
+		size: 3.1em,
+		weight: "bold",
+		fill: gradient.linear(rgb("#007aff"), rgb("#2ec7b2")),
+	)[
+		Typst cheat sheet
+	],
+)
+
 //= Terminal commands
 
-#align(
-	horizon
-)[
+//#align(
+//	horizon
+//)[
 
 #table(
 	columns: (1fr, auto),
@@ -122,9 +137,9 @@ https://example.org
 	#link("https://7i.se", "7i")
 	],
 	[
-```typst
-#link("https://example.org")
+#link("https://typst.app/docs/reference/model/link/", "link function")
 
+```typst
 #link("https://7i.se", "7i")
 ```
 	],
@@ -325,7 +340,7 @@ $ sqrt(x^2 + y^2) = z $
 	],
 	[
 #figure(
-	image("/inc/foo.png", width: 30%),
+	image("/inc/foo.png", width: 29%),
 	caption: [Sunset.],
 ) <fig-foo>
 	],
@@ -423,10 +438,10 @@ See @fig-foo.
 	attribution: [Unknown],
 	block: true)["In the matrix of ones and zeros, a hacker is both creator and destroyer."]
 ```
-#v(0.63mm) // this is not a HACK :)
+//#v(0.63mm) // this is not a HACK :)
 	],
 	[
 #quote(attribution: [Unknown], block: true)["In the matrix of ones and zeros, a hacker is both creator and destroyer."]
 	],
 )
-]
+//]
