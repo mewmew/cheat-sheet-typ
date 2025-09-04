@@ -7,6 +7,10 @@
 
 #set columns(gutter: 0.5cm)
 
+#set table(align: left+horizon)
+
+#show quote: emph
+
 #set table(stroke: 0.2pt, inset: 5pt)
 #set text(size: 10pt)
 #show link: it => {
@@ -25,12 +29,15 @@
 	}
 )
 
-= Terminal commands
+//= Terminal commands
 
-\
+#align(
+	horizon
+)[
 
 #table(
 	columns: (1fr, auto),
+	rows: 0.9cm,
 	table.header[*Command*][*Desription*],
 	// generate template
 	[
@@ -61,8 +68,8 @@ add custom fonts
 	],
 )
 
-#v(0.1mm)
-=== Thingamajiggles
+//#v(0.1mm)
+//=== Thingamajiggles
 
 #place(dx: 10pt, dy: 10pt)[#line(length: 5cm, stroke: 1pt)]
 
@@ -135,6 +142,50 @@ print('hello world')
 	[
 #raw("#raw(read(\"/inc/hello.py\"),\nblock: true, lang: \"python\")", lang: "typst")
 	],
+	// heading
+	[
+```
+= Heading one
+
+== Heading two
+```
+	],
+	[
+#set heading(numbering: "1.1")
+= Heading one
+
+== Heading two
+	],
+	[
+#link("https://typst.app/docs/reference/model/heading/", "heading function")
+	],
+	// label
+	[
+```
+=== Qwerty
+<sec-ref-heading>
+```
+	],
+	[
+#set heading(numbering: "1.1")
+=== Qwerty
+<sec-ref-heading>
+	],
+	[
+#link("https://typst.app/docs/reference/foundations/label/", "label function")
+	],
+	// ref
+	[
+```
+See @sec-ref-heading.
+```
+	],
+	[
+See @sec-ref-heading.
+	],
+	[
+#link("https://typst.app/docs/reference/model/ref/", "ref function")
+	],
 	// mono
 	[
 #raw("`mono`")
@@ -163,35 +214,16 @@ _Italic text_
 	[
 #link("https://typst.app/docs/reference/model/emph", "emph function")
 	],
-	// heading
-	[
-```
-= Heading one
-<sec-heading-one>
-
-== Heading two
-```
-	],
-	[
-#set heading(numbering: "1.1")
-= Heading one
-<sec-heading-one>
-
-== Heading two
-	],
-	[
-#link("https://typst.app/docs/reference/model/heading/", "heading function")
-	],
 	// symbols
 	[
 ```
 $-->$
 ...
-#sym.ballot.check
+#sym.checkmark
 ```
 	],
 	[
-$-->$ ... #sym.ballot.check
+$-->$ ... #text(size: 1.5em)[#sym.checkmark]
 	],
 	[
 #link("https://typst.app/docs/reference/symbols/sym/", "symbols list")
@@ -214,13 +246,34 @@ $-->$ ... #sym.ballot.check
 
 #colbreak()
 
-= Modes in Typst
+//= Modes in Typst
 
-There are three #emph[modes] in Typst: #strong[markup], #strong[math] and #strong[code]. Markup is the default mode.
+//There are three #emph[modes] in Typst: #strong[markup], #strong[math] and #strong[code]. Markup is the default mode.
 
 #table(
 	columns: (auto, auto, 1fr, auto),
+	rows: 0.9cm,
 	table.header[*Mode*][*Syntax*][*Example*][*Output*],
+	// Markup
+	[
+#link("https://typst.app/docs/reference/syntax/#markup", "Markup")
+	],
+	[
+```typst
+// default mode
+Surround markup with [..]
+```
+	],
+	[
+```typst
+// use Markup in Code.
+#let desc = [*test* ing]
+```
+	],
+	[
+#let desc = [*test* ing]
+#desc
+	],
 	// Code
 	[
 #link("https://typst.app/docs/reference/syntax/#code", "Code")
@@ -255,25 +308,6 @@ $ sqrt(x^2 + y^2) = z $
 	[
 $ sqrt(x^2 + y^2) = z $
 	],
-	// Markup
-	[
-#link("https://typst.app/docs/reference/syntax/#markup", "Markup")
-	],
-	[
-```typst
-Surround markup with [..]
-```
-	],
-	[
-```typst
-// use Markup in Code.
-#let desc = [*test* ing]
-```
-	],
-	[
-#let desc = [*test* ing]
-#desc
-	],
 )
 
 
@@ -286,23 +320,23 @@ Surround markup with [..]
 #figure(
 	image("/inc/foo.png", width: 30%),
 	caption: [Sunset.],
-) <fig-bar>
+) <fig-foo>
 ```
 	],
 	[
 #figure(
 	image("/inc/foo.png", width: 30%),
 	caption: [Sunset.],
-) <fig-bar>
+) <fig-foo>
 	],
 	// reference
 	[
 ```typst
-See @fig-bar and @sec-heading-one.
+See @fig-foo.
 ```
 	],
 	[
-See @fig-bar and @sec-heading-one.
+See @fig-foo.
 	],
 	// highlight
 	[
@@ -382,4 +416,17 @@ See @fig-bar and @sec-heading-one.
 // non-empty page break
 ```
 	],
+	// quote
+	[
+```typst
+#quote(
+	attribution: [Unknown],
+	block: true)["In the matrix of ones and zeros, a hacker is both creator and destroyer."]
+```
+#v(0.63mm) // this is not a HACK :)
+	],
+	[
+#quote(attribution: [Unknown], block: true)["In the matrix of ones and zeros, a hacker is both creator and destroyer."]
+	],
 )
+]
