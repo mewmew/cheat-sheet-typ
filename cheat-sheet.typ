@@ -9,6 +9,10 @@
 
 #set table(align: left+horizon)
 
+#set enum(numbering: "1)a)")
+
+#set document(date: none)
+
 #show quote: emph
 
 #set table(stroke: 0.2pt, inset: 5pt)
@@ -53,7 +57,7 @@
 #table(
 	columns: (1fr, auto),
 	rows: 0.9cm,
-	table.header[*Command*][*Desription*],
+	table.header[*Command*][*Description*],
 	// generate template
 	[
 ```bash
