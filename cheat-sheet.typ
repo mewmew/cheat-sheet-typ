@@ -17,14 +17,6 @@
 
 #set table(stroke: 0.2pt, inset: 5pt)
 #set text(size: 10pt)
-#show link: it => {
-	if type(it.dest) == str {
-		set text(fill: blue)
-		underline(offset: 3pt, it)
-	} else {
-		it
-	}
-}
 
 #set table(
 	// make table header blue.
@@ -44,9 +36,18 @@
 		weight: "bold",
 		fill: gradient.linear(rgb("#007aff"), rgb("#2ec7b2")),
 	)[
-		Typst cheat sheet
+		#link("https://github.com/mewmew/cheat-sheet-typ", "Typst cheat sheet")
 	],
 )
+
+#show link: it => {
+	if type(it.dest) == str {
+		set text(fill: blue)
+		underline(offset: 3pt, it)
+	} else {
+		it
+	}
+}
 
 //= Terminal commands
 
