@@ -1,3 +1,6 @@
+// === [ style ] ===============================================================
+
+// use landscape mode and 2 columns.
 #set page(
 	paper: "a4",
 	margin: (x: 0.5cm, y: 1cm),
@@ -5,26 +8,33 @@
 	columns: 2,
 )
 
-#set columns(gutter: 0.5cm)
-
-#set table(align: left+horizon)
-
-#set enum(numbering: "1)a)")
-
+// reproducible PDF
 #set document(date: none)
 
-#show quote: emph
-
-#set table(stroke: 0.2pt, inset: 5pt)
+// smaller text size
 #set text(size: 10pt)
 
+// small space between columns.
+#set columns(gutter: 0.5cm)
+
+// use "a, b" numbering for enum level two.
+#set enum(numbering: "1)a)")
+
+// italic quote
+#show quote: emph
+
+// default table style
 #set table(
+	stroke: 0.2pt,
+	inset: 5pt,
+	align: left+horizon,
 	// make table header blue.
-	fill: (_, y) => if y == 0 {
-		blue.lighten(90%)
-	}
+	fill: (_, y) => if y == 0 { blue.lighten(90%) },
 )
 
+// === [ document ] ============================================================
+
+// --- [ title ] ---------------------------------------------------------------
 
 #place(
 	top + center,
@@ -40,6 +50,9 @@
 	],
 )
 
+// -----------------------------------------------------------------------------
+
+// place link show rule after title, so Typst cheat sheet link uses gradient.
 #show link: it => {
 	if type(it.dest) == str {
 		set text(fill: blue)
@@ -49,17 +62,13 @@
 	}
 }
 
-//= Terminal commands
-
-//#align(
-//	horizon
-//)[
+// --- [ Terminal commands ] ---------------------------------------------------
 
 #table(
 	columns: (1fr, auto),
 	rows: 0.9cm,
 	table.header[*Command*][*Description*],
-	// generate template
+// ~~~ [ generate template ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```bash
 typst init @local/pkg-name
@@ -68,7 +77,7 @@ typst init @local/pkg-name
 	[
 generate project from template
 	],
-	// compile report to PDF
+// ~~~ [ compile report to PDF ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```bash
 typst watch report.typ
@@ -77,7 +86,7 @@ typst watch report.typ
 	[
 continuously compile report to PDF
 	],
-	// configure fonts
+// ~~~ [ configure fonts ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```bash
 typst watch --font-path=inc/fonts report.typ
@@ -88,15 +97,14 @@ add custom fonts
 	],
 )
 
-//#v(0.1mm)
-//=== Thingamajiggles
+// --- [ Shorthands ] ----------------------------------------------------------
 
-#place(dx: 10pt, dy: 10pt)[#line(length: 5cm, stroke: 1pt)]
+//=== Thingamajiggles
 
 #table(
 	columns: (auto, auto, 1fr),
-	table.header([*Shorthand*], [*Output*], [*Typst function*]),
-	// bullet list
+	table.header[*Shorthand*][*Output*][*Typst function*],
+// ~~~ [ bullet list ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```
 - foo
@@ -112,7 +120,7 @@ add custom fonts
 	[
 #link("https://typst.app/docs/reference/model/list/", "list function")
 	],
-	// numbered list
+// ~~~ [ numbered list ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
 + foo
@@ -130,7 +138,7 @@ add custom fonts
 	[
 #link("https://typst.app/docs/reference/model/enum/", "enum function")
 	],
-	// link
+// ~~~ [ link ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```
 https://example.org
@@ -148,7 +156,7 @@ https://example.org
 #link("https://7i.se", "7i")
 ```
 	],
-	// raw
+// ~~~ [ raw ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 #raw("```python
 print('hello world')
@@ -162,7 +170,7 @@ print('hello world')
 	[
 #raw("#raw(read(\"/inc/hello.py\"),\nblock: true, lang: \"python\")", lang: "typst")
 	],
-	// heading
+// ~~~ [ heading ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```
 = Heading one
@@ -179,7 +187,7 @@ print('hello world')
 	[
 #link("https://typst.app/docs/reference/model/heading/", "heading function")
 	],
-	// label
+// ~~~ [ label ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```
 === Qwerty
@@ -194,7 +202,7 @@ print('hello world')
 	[
 #link("https://typst.app/docs/reference/foundations/label/", "label function")
 	],
-	// ref
+// ~~~ [ ref ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```
 See @sec-ref-heading.
@@ -206,7 +214,7 @@ See @sec-ref-heading.
 	[
 #link("https://typst.app/docs/reference/model/ref/", "ref function")
 	],
-	// mono
+// ~~~ [ mono ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 #raw("`mono`")
 	],
@@ -214,7 +222,7 @@ See @sec-ref-heading.
 	[
 #link("https://typst.app/docs/reference/text/raw/", "raw function")
 	],
-	// bold
+// ~~~ [ bold ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```
 *Bold text*
@@ -224,7 +232,7 @@ See @sec-ref-heading.
 	[
 #link("https://typst.app/docs/reference/model/strong", "strong function")
 	],
-	// italic
+// ~~~ [ italic ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```
 _Italic text_
@@ -234,7 +242,7 @@ _Italic text_
 	[
 #link("https://typst.app/docs/reference/model/emph", "emph function")
 	],
-	// symbols
+// ~~~ [ symbols ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```
 $-->$
@@ -248,7 +256,7 @@ $-->$ ... #text(size: 1.5em)[#sym.checkmark]
 	[
 #link("https://typst.app/docs/reference/symbols/sym/", "symbols list")
 	],
-	// line break (TODO: remove?)
+// ~~~ [ line break ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```
 \
@@ -266,15 +274,13 @@ $-->$ ... #text(size: 1.5em)[#sym.checkmark]
 
 #colbreak()
 
-//= Modes in Typst
-
-//There are three #emph[modes] in Typst: #strong[markup], #strong[math] and #strong[code]. Markup is the default mode.
+// --- [ Modes in Typst ] ------------------------------------------------------
 
 #table(
 	columns: (auto, auto, 1fr, auto),
 	rows: 0.9cm,
 	table.header[*Mode*][*Syntax*][*Example*][*Output*],
-	// Markup
+// ~~~ [ Markup ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 #link("https://typst.app/docs/reference/syntax/#markup", "Markup")
 	],
@@ -294,7 +300,7 @@ Surround markup with [..]
 #let desc = [*test* ing]
 #desc
 	],
-	// Code
+// ~~~ [ Code ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 #link("https://typst.app/docs/reference/syntax/#code", "Code")
 	],
@@ -311,7 +317,7 @@ Result: #(30 + 12)
 	[
 Result: #(30 + 12)
 	],
-	// Math
+// ~~~ [ Math ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 #link("https://typst.app/docs/reference/syntax/#math", "Math")
 	],
@@ -330,11 +336,12 @@ $ sqrt(x^2 + y^2) = z $
 	],
 )
 
+// --- [ Typst functions ] -----------------------------------------------------
 
 #table(
 	columns: (1fr, 1fr),
 	table.header[*Typst function*][*Output*],
-	// figure
+// ~~~ [ figure ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
 #figure(
@@ -349,7 +356,7 @@ $ sqrt(x^2 + y^2) = z $
 	caption: [Sunset.],
 ) <fig-foo>
 	],
-	// reference
+// ~~~ [ reference ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
 See @fig-foo.
@@ -358,14 +365,14 @@ See @fig-foo.
 	[
 See @fig-foo.
 	],
-	// highlight
+// ~~~ [ highlight ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
 #highlight[Highlighted text]
 ```
 	],
 	[#highlight[Highlighted text]],
-	// footnote
+// ~~~ [ footnote ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
 #footnote[foo]
@@ -378,35 +385,35 @@ See @fig-foo.
 	#v(-0.3cm)
 	#h(0.2cm)#text(size: 0.85em)[#super[#link(<foot-backlink>, "1")]<foot-one>foo]
 	],
-	// underline
+// ~~~ [ underline ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
 #underline[Underlined text]
 ```
 	],
 	[#underline[Underlined text]],
-	// coloured text
+// ~~~ [ coloured text ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
 #text(fill: blue)[Blue text]
 ```
 	],
 	[#text(fill: blue)[Blue text]],
-	// large font
+// ~~~ [ text size ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
 #text(size: 2em)[Text size]
 ```
 	],
 	[#text(size: 2em)[Text size]],
-	// strikethrough
+// ~~~ [ strikethrough ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
 #strike[Stroken text]
 ```
 	],
 	[#strike[Stroken text]],
-	// table
+// ~~~ [ table ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
 #table(
@@ -425,7 +432,7 @@ See @fig-foo.
 	[c], [d],
 )
 	],
-	// page break
+// ~~~ [ page break ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
 #pagebreak(weak: true)
@@ -436,17 +443,15 @@ See @fig-foo.
 // non-empty page break
 ```
 	],
-	// quote
+// ~~~ [ quote ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
 #quote(
 	attribution: [Unknown],
 	block: true)["In the matrix of ones and zeros, a hacker is both creator and destroyer."]
 ```
-//#v(0.63mm) // this is not a HACK :)
 	],
 	[
 #quote(attribution: [Unknown], block: true)["In the matrix of ones and zeros, a hacker is both creator and destroyer."]
 	],
 )
-//]
