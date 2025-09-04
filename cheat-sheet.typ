@@ -410,7 +410,7 @@ See @fig-foo.
 	[
 ```typst
 #table(
-	columns: (1fr, 1fr),
+	columns: 2,
 	table.header[*name*][*desc*],
 	[a], [b],
 	[c], [d],
