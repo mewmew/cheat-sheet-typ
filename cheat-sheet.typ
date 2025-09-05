@@ -65,7 +65,7 @@
 // --- [ Terminal commands ] ---------------------------------------------------
 
 #table(
-	columns: (1fr, auto),
+	columns: (1fr, 40%),
 	rows: 0.9cm,
 	table.header[*Command*][*Description*],
 // ~~~ [ generate template ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -102,7 +102,7 @@ add custom fonts
 //=== Thingamajiggles
 
 #table(
-	columns: (auto, auto, 1fr),
+	columns: (30%, 1fr, 40%),
 	table.header[*Shorthand*][*Output*][*Typst function*],
 // ~~~ [ bullet list ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
@@ -277,7 +277,7 @@ $-->$ ... #text(size: 1.5em)[#sym.checkmark]
 // --- [ Modes in Typst ] ------------------------------------------------------
 
 #table(
-	columns: (auto, auto, 1fr, auto),
+	columns: (auto, 1fr, 32%, 18%),
 	rows: 0.9cm,
 	table.header[*Mode*][*Syntax*][*Example*][*Output*],
 // ~~~ [ Markup ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
