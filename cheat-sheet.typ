@@ -191,13 +191,13 @@ print('hello world')
 	[
 ```
 === Qwerty
-<sec-ref-heading>
+<sec-qwerty>
 ```
 	],
 	[
 #set heading(numbering: "1.1")
 === Qwerty
-<sec-ref-heading>
+<sec-qwerty>
 	],
 	[
 #link("https://typst.app/docs/reference/foundations/label/", "label function")
@@ -205,11 +205,11 @@ print('hello world')
 // ~~~ [ ref ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```
-See @sec-ref-heading.
+See @sec-qwerty.
 ```
 	],
 	[
-See @sec-ref-heading.
+See @sec-qwerty.
 	],
 	[
 #link("https://typst.app/docs/reference/model/ref/", "ref function")
