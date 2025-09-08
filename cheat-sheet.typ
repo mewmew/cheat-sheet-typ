@@ -409,10 +409,10 @@ See @fig-foo.
 // ~~~ [ strikethrough ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
-#strike[Stroken text]
+#strike[Strikethrough text]
 ```
 	],
-	[#strike[Stroken text]],
+	[#strike[Strikethrough text]],
 // ~~~ [ table ] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	[
 ```typst
